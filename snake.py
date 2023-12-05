@@ -8,11 +8,13 @@ LEFT = 180
 RIGHT = 0
 
 
+
 class Snake:
         def __init__(self) -> None:
             self.segments = []
             self.create_snake()
             self.head = self.segments[0]
+           
 
     #generating the three squares
         def create_snake(self):
@@ -27,8 +29,9 @@ class Snake:
             self.segments.append(new_segment)      
             
         def extend(self):
-            self.add_segment(self.segments[-1].position())          
-                
+            self.add_segment(self.segments[-1].position())    
+        
+     
     
     #function to move the turtle forward 
         def move(self):

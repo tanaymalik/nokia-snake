@@ -91,6 +91,7 @@ def game_loop():
         foodie.refresh()
         snake.extend()
         score.update_score()
+      
 
     # DETECT COLLISION WITH WALL
     if (
@@ -102,10 +103,22 @@ def game_loop():
         music.play_game_over()
         score.game_over()
         game_on = False
+        
+    #DETECT COLLISION WITH ITS OWN TAIL
+    for segment in snake.segments[1:]: #using list slicing to make sure the head doesnt include in the list
+        #if distance between the head and any part of the tail is less than 10 itl execute game over
+        if snake.head.distance(segment) < 10:
+        
+            music.play_game_over()
+            score.game_over()
+            
+            game_on = False  
+    
+        
 
     # Schedule the next execution of game_loop after 100ms
     if game_on:
-        screen.ontimer(game_loop, 80)
+        screen.ontimer(game_loop, 100)
 
 # Call the game loop for the first time
 game_loop()
